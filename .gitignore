@@ -4,3 +4,4 @@
 .dmypy.json
 dmypy.json
 requirements.txt
+__pycache__
