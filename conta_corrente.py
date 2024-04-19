@@ -1,8 +1,23 @@
-class ContaBancaria:
-    def __init__(self):
+from usuario import usuarios
+
+contas = {}
+
+
+class ContaCorrente:
+    proximo_numero = 1
+
+    def __init__(self, cpf: str):
+        if cpf not in usuarios:
+            raise ValueError("Usuário não encontrado")
+        self.agencia = "0001"
+        self.numero = ContaCorrente.proximo_numero
+        ContaCorrente.proximo_numero += 1
+        self.usuario = usuarios[cpf]
         self.saldo = 0.0
-        self.transacoes = []
+        self.transacoes: list = []
         self.saques_diarios = 0
+        self.usuario.contas.append(self)
+        contas[self.numero] = self
 
     def depositar(self, valor: float) -> str:
         if valor > 0:
