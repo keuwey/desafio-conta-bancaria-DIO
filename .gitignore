@@ -3,5 +3,5 @@
 .mypy_cache/
 .dmypy.json
 dmypy.json
-requirements.txt
 __pycache__
+*.csv
