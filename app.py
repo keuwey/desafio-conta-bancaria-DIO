@@ -61,6 +61,10 @@ while True:
                       conta.numero}, Saldo: R$ {conta.saldo:.2f}")
         except ValueError:
             print("Usuário não encontrado")
+
+    # * TODO: fix: when a user wants to make a deposit and types in the account
+    # * number, it passes on the ValueError exception and returns "Conta não encontrada"
+
     elif opcao == "d":
         numero = int(input("Digite o número da conta: "))
         valor = float(input("Digite o valor que você deseja depositar: "))
