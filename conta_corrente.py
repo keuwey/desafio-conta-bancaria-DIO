@@ -1,4 +1,3 @@
-# conta_corrente.py
 from usuario import get_usuario
 import csv
 
@@ -8,7 +7,7 @@ class ContaCorrente:
 
     def __init__(self, cpf: str):
         usuario = get_usuario(cpf)
-        self.agencia = "0001"
+        self.agencia = "1"
         self.numero = ContaCorrente.proximo_numero
         ContaCorrente.proximo_numero += 1
         self.usuario = usuario
@@ -16,18 +15,19 @@ class ContaCorrente:
         self.transacoes: list = []
         self.saques_diarios = 0
         self.usuario.contas.append(self)
-        with open('contas.csv', 'a', newline='') as file:
+        with open("contas.csv", "a", newline="") as file:
             writer = csv.writer(file)
             writer.writerow([self.numero, self.usuario.nome, self.saldo])
 
     def depositar(self, valor: float) -> str:
         if valor > 0:
             self.saldo += valor
-            self.transacoes.append(('Depósito', valor))
-            with open('contas.csv', 'a', newline='') as file:
+            self.transacoes.append(("Depósito", valor))
+            with open("contas.csv", "a", newline="") as file:
                 writer = csv.writer(file)
-                writer.writerow([self.numero, 'Depósito', valor])
-            return f"Depósito de R$ {valor:.2f} realizado com sucesso!\nSaldo atual: R$ {self.saldo:.2f}"
+                writer.writerow([self.numero, "Depósito", valor])
+            return f"Depósito de R$ {
+                valor:.2f} realizado com sucesso!\nSaldo atual: R$ {self.saldo:.2f}"
         return "Digite um valor positivo"
 
     def sacar(self, valor: float) -> str:
@@ -37,12 +37,13 @@ class ContaCorrente:
             return "O valor máximo para saque é de R$ 500,00."
         if self.saldo >= valor:
             self.saldo -= valor
-            self.transacoes.append(('Saque', -valor))
+            self.transacoes.append(("Saque", -valor))
             self.saques_diarios += 1
-            with open('contas.csv', 'a', newline='') as file:
+            with open("contas.csv", "a", newline="") as file:
                 writer = csv.writer(file)
-                writer.writerow([self.numero, 'Saque', -valor])
-            return f"Saque no valor de R$ {valor:.2f} realizado com sucesso\nSaldo atual: R$ {self.saldo:.2f}"
+                writer.writerow([self.numero, "Saque", -valor])
+            return f"Saque no valor de R$ {
+                valor:.2f} realizado com sucesso\nSaldo atual: R$ {self.saldo:.2f}"
         return "O valor que você deseja sacar é maior que o saldo atual da sua conta."
 
     def extrato(self) -> str:

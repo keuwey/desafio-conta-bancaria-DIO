@@ -1,4 +1,3 @@
-# app.py
 from usuario import Usuario, get_usuario
 from conta_corrente import ContaCorrente
 import csv
@@ -63,7 +62,7 @@ while True:
             print("Usuário não encontrado")
 
     # * TODO: fix: when a user wants to make a deposit and types in the account
-    # * number, it passes on the ValueError exception and returns "Conta não encontrada"
+    # * number, it passes the ValueError exception and returns "Conta não encontrada"
 
     elif opcao == "d":
         numero = int(input("Digite o número da conta: "))

@@ -1,4 +1,3 @@
-# usuario.py
 import re
 import csv
 
@@ -19,16 +18,15 @@ class Usuario:
         self.endereco = endereco
         self.contas: list = []
         usuarios[cpf] = self
-        with open('usuarios.csv', 'a', newline='') as file:
+        with open("usuarios.csv", "a", newline="") as file:
             writer = csv.writer(file)
-            writer.writerow(
-                [self.nome, self.data_nascimento, self.cpf, self.endereco])
+            writer.writerow([self.nome, self.data_nascimento, self.cpf, self.endereco])
 
 
 def get_usuario(cpf: str) -> Usuario:
     if cpf in usuarios:
         return usuarios[cpf]
-    with open('usuarios.csv', 'r') as file:
+    with open("usuarios.csv", "r") as file:
         reader = csv.reader(file)
         for row in reader:
             if row[2] == cpf:
