@@ -1,8 +1,6 @@
 import csv
 import re
 
-usuarios = {}
-
 
 class Usuario:
     def __init__(self, nome: str, data_nascimento: str, cpf: str, endereco: str):
@@ -17,7 +15,6 @@ class Usuario:
         self.cpf = cpf
         self.endereco = endereco
         self.contas: list = []
-        usuarios[cpf] = self
         with open("usuarios.csv", "a", newline="") as file:
             writer = csv.writer(file)
             writer.writerow([self.nome, self.data_nascimento, self.cpf, self.endereco])

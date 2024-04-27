@@ -1,11 +1,9 @@
 import csv
 
-from usuario import Usuario, usuarios
+from usuario import Usuario
 
 
 def get_usuario(cpf: str) -> Usuario:
-    if cpf in usuarios:
-        return usuarios[cpf]
     with open("usuarios.csv", "r") as file:
         reader = csv.reader(file)
         for row in reader:
