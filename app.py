@@ -1,7 +1,9 @@
 import csv
 
 from conta_corrente import ContaCorrente
-from usuario import Usuario, get_usuario
+from get_conta import get_conta
+from get_usuario import get_usuario
+from usuario import Usuario
 
 menu = """
 [cu] Criar usuário
@@ -13,15 +15,6 @@ menu = """
 [e] Extrato
 [q] Sair
 """
-
-
-def get_conta(numero: int) -> ContaCorrente:
-    with open('contas.csv', 'r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            if int(row[0]) == numero:
-                return ContaCorrente(row[1])
-    raise ValueError("Conta não encontrada")
 
 
 while True:
