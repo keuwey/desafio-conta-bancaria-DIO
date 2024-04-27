@@ -1,5 +1,6 @@
-from usuario import get_usuario
 import csv
+
+from usuario import get_usuario
 
 
 class ContaCorrente:

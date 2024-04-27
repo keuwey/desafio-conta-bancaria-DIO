@@ -1,6 +1,7 @@
-from usuario import Usuario, get_usuario
-from conta_corrente import ContaCorrente
 import csv
+
+from conta_corrente import ContaCorrente
+from usuario import Usuario, get_usuario
 
 menu = """
 [cu] Criar usuário
