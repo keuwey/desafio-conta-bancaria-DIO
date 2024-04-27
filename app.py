@@ -61,8 +61,6 @@ while True:
         except ValueError:
             print("Usuário não encontrado")
 
-    # * TODO: fix: when a user wants to make a deposit and types in the account
-    # * number, it passes the ValueError exception and returns "Conta não encontrada"
 
     elif opcao == "d":
         numero = int(input("Digite o número da conta: "))
@@ -91,3 +89,10 @@ while True:
         break
     else:
         print("Operação inválida!")
+
+
+"""
+* TODO: fix: when a user wants to make a deposit (option 'd')
+and types in the account number, it goes to the ValueError exception
+and returns 'Conta não encontrada'.
+"""
