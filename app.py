@@ -37,10 +37,12 @@ while True:
             print("funcionando")
         case "s":
             #
-            
+            realizarDeposito()
+
         case "e":
             #
-            
+            realizarDeposito()
+
         case "q":    
             break
         case _:

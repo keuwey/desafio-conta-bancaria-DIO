@@ -15,6 +15,6 @@ class Usuario:
         self.endereco = endereco
         self.contas: list = []
         
-        with open("usuarios.csv", "a", newline="") as file:
+        with open("usuarios.csv", "w", newline="") as file:
             writer = csv.writer(file)
             writer.writerow([self.nome, self.data_nascimento, self.cpf, self.endereco])
