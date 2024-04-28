@@ -27,9 +27,8 @@ class ContaCorrente:
             with open("contas.csv", "a", newline="") as file:
                 writer = csv.writer(file)
                 writer.writerow([self.numero, "Depósito", valor])
-            return f"Depósito de R$ {
-                valor:.2f} realizado com sucesso!\nSaldo atual: R$ {
-                    self.saldo:.2f}"
+            return (f"Depósito de R$ {valor:.2f} realizado com sucesso!"
+                    f"\nSaldo atual: R$ {self.saldo:.2f}")
         return "Digite um valor positivo"
 
     def sacar(self, valor: float) -> str:
@@ -44,9 +43,8 @@ class ContaCorrente:
             with open("contas.csv", "a", newline="") as file:
                 writer = csv.writer(file)
                 writer.writerow([self.numero, "Saque", -valor])
-            return f"Saque no valor de R$ {
-                valor:.2f} realizado com sucesso\nSaldo atual: R$ {
-                    self.saldo:.2f}"
+            return (f"Saque no valor de R$ {valor:.2f} realizado com sucesso\n"
+                    f"Saldo atual: R$ {self.saldo:.2f}")
         return "O valor que você deseja sacar é maior que o saldo da sua conta."
 
     def extrato(self) -> str:
