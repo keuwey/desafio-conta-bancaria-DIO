@@ -14,6 +14,7 @@ class Usuario:
         self.data_nascimento = data_nascimento
         self.cpf = cpf
         self.endereco = endereco
+<<<<<<< HEAD
 
         # Verifica se o arquivo existe e faz as alterações com os novos dados
         if os.path.exists("data/usuarios.csv"):
@@ -32,3 +33,10 @@ class Usuario:
                 with open("data/usuarios.csv", "a", newline="") as file:
                     writer = csv.writer(file)
                     writer.writerow([self.nome, self.data_nascimento, self.cpf, self.endereco])
+=======
+        self.contas: list = []
+        
+        with open("usuarios.csv", "w", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow([self.nome, self.data_nascimento, self.cpf, self.endereco])
+>>>>>>> c250ee8c654981e21d3e91df2a502031ead9f0fe
