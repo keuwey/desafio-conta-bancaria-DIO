@@ -38,17 +38,9 @@ while True:
         case "s":
             #
             realizarDeposito()
-<<<<<<< HEAD
         case "e":
             #
             realizarDeposito()
-=======
-
-        case "e":
-            #
-            realizarDeposito()
-
->>>>>>> c250ee8c654981e21d3e91df2a502031ead9f0fe
         case "q":    
             break
         case _:

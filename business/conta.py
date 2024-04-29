@@ -16,7 +16,6 @@ class Conta:
         self.usuario = usuario
         self.saldo = 0.0
         self.saques_diarios = 0
-<<<<<<< HEAD
 
         # Verifica se o arquivo existe, caso existe não faz nada para não duplicar o arquivo.
         if os.path.exists("data/conta-"+str(self.numero)+".csv"):
@@ -42,24 +41,6 @@ class Conta:
             with open("data/conta-" + str(self.numero) + ".csv","w+",newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow([self.numero,self.usuario.nome,self.saldo])
-=======
-        self.usuario.contas.append(self)
-        
-        with open("contas.csv", "w", newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow([self.numero, self.usuario.nome, self.saldo])
-
-def depositar(self, valor: float) -> str:
-    if valor > 0:
-        self.saldo += valor
-        self.transacoes.append(("Depósito", valor))
-        
-        with open("contas.csv", "w", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow([self.numero, "Depósito", valor])
-        return f"Depósito de R$ {valor:.2f} realizado com sucesso!\nSaldo atual: R$ {self.saldo:.2f}"
-    return "Digite um valor positivo"
->>>>>>> c250ee8c654981e21d3e91df2a502031ead9f0fe
 
             # Adciona registro as transações cria um arquivo exclusivo para cada conta de cliente com numero da conta ao lado
             with open("data/transacoes" + str(self.numero) + ".csv", "a", newline="") as file:
@@ -80,7 +61,6 @@ def depositar(self, valor: float) -> str:
             self.saldo -= valor
             self.saques_diarios += 1
        
-<<<<<<< HEAD
             # Adciona registro as transações cria um arquivo exclusivo para cada conta de cliente com numero da conta ao lado
             with open("data/transacoes-" + str(self.numero) + ".csv", "a+", newline="") as file:
                 writer = csv.writer(file)
@@ -92,16 +72,6 @@ def depositar(self, valor: float) -> str:
     
     # Metódo para EXTRATO
     def extrato(self) -> str:
-=======
-       with open("contas.csv", "w", newline="") as file:
-         writer = csv.writer(file)
-         writer.writerow([self.numero, "Saque", -valor])
-        
-       return f"Saque no valor de R$ {valor:.2f} realizado com sucesso\nSaldo atual: R$ {self.saldo:.2f}"
-    return "O valor que você deseja sacar é maior que o saldo da sua conta."
-
-def extrato(self) -> str:
->>>>>>> c250ee8c654981e21d3e91df2a502031ead9f0fe
         extrato = ""
         for transacao, valor in self.transacoes:
             extrato += f"{transacao}: R$ {valor:.2f}\n"
