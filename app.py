@@ -37,10 +37,10 @@ while True:
             print("funcionando")
         case "s":
             #
-            
+            realizarDeposito()
         case "e":
             #
-            
+            realizarDeposito()
         case "q":    
             break
         case _:
@@ -48,7 +48,7 @@ while True:
 
 
 """
-* TODO: fix: when a user wants to make a deposit (option 'd')
-and types in the account number, it goes to the ValueError exception
-and returns 'Conta não encontrada'.
+* TODO: fix: When a user wants to make a transaction and the system creates duplicated data,
+e.g.: a duplicated user or a duplicated account.
 """
+

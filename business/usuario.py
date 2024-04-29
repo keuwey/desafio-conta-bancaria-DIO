@@ -1,5 +1,6 @@
 import csv
 import re
+import os
 
 class Usuario:
     def __init__(self, nome: str, data_nascimento: str, cpf: str, endereco: str):
@@ -13,8 +14,21 @@ class Usuario:
         self.data_nascimento = data_nascimento
         self.cpf = cpf
         self.endereco = endereco
-        self.contas: list = []
-        
-        with open("usuarios.csv", "a", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow([self.nome, self.data_nascimento, self.cpf, self.endereco])
+
+        # Verifica se o arquivo existe e faz as alterações com os novos dados
+        if os.path.exists("data/usuarios.csv"):
+    
+            with open("data/usuarios.csv", "r") as file:
+                reader = csv.reader(file)
+                for row in reader:
+                    if (row[2] != self.cpf):
+                        with open("data/usuarios.csv", "a", newline="") as file:
+                            writer = csv.writer(file)
+                            writer.writerow([self.nome, self.data_nascimento, self.cpf, self.endereco])
+                            
+        # Caso o arquivo não exista, cria o arquivo e faz a inclusão das informações      
+        else:
+            with open("data/usuarios.csv", "x") as file:
+                with open("data/usuarios.csv", "a", newline="") as file:
+                    writer = csv.writer(file)
+                    writer.writerow([self.nome, self.data_nascimento, self.cpf, self.endereco])
