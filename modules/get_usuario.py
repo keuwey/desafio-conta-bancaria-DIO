@@ -2,6 +2,7 @@ import csv
 
 from business.usuario import Usuario
 
+
 def get_usuario(cpf: str):
     with open("data/usuarios.csv", "r") as f:
         reader = csv.reader(f)

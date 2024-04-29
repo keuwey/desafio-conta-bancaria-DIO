@@ -2,9 +2,10 @@ import csv
 
 from business.conta import Conta
 
+
 def get_conta(numero: int):
-    # Acessa o arquivo conta-<numero-da-conta>.csv em modo de leitura "r"
-    with open("data/conta-"+str(numero)+".csv", "r") as file:
+    # Acessa o arquivo conta - <numero-da-conta>.csv em modo de leitura "r"
+    with open("data/conta-" + str(numero) + ".csv", "r") as file:
         reader = csv.reader(file)
         # Para cada campo dentro dentro do arquivo lido retorna uma lista
         for row in reader:
