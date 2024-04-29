@@ -1,13 +1,12 @@
-import csv
-
-from conta_corrente import ContaCorrente
-from get_conta import get_conta
-from get_usuario import get_usuario
-from usuario import Usuario
+from modules.cadastro_usuario import CadastrarUsuario
+from modules.cadastro_conta import CadastrarConta
+from modules.listar_usuario import ListarUsuarios
+from modules.listar_conta import ListarContas
+from business.deposito import realizarDeposito
 
 menu = """
-[cu] Criar usuário
-[cc] Criar conta corrente
+[cu] Cadastrar Usuário
+[cc] Cadastrar Conta
 [lu] Listar usuários
 [lc] Listar contas de um usuário
 [d] Depositar
@@ -17,7 +16,9 @@ menu = """
 """
 
 while True:
+
     opcao = input(menu).lower()
+<<<<<<< HEAD
     if opcao == "cu":
         nome = input("Digite o nome do usuário: ")
         data_nascimento = input("Digite a data de nascimento (dd/mm/aaaa): ")
@@ -80,9 +81,38 @@ while True:
         break
     else:
         print("Operação inválida!")
+=======
+
+    match opcao:
+        case "cu":
+            CadastrarUsuario()
+            print("funcionando")
+        case "cc":
+            CadastrarConta()
+            print("funcionando")
+        case "lu":
+            ListarUsuarios()
+            print("funcionando")
+        case "lc":
+            ListarContas()
+            print("funcionando")
+        case "d":
+            realizarDeposito()
+            print("funcionando")
+        case "s":
+            #
+            realizarDeposito()
+        case "e":
+            #
+            realizarDeposito()
+        case "q":
+            break
+        case _:
+            print("Operação inválida!")
+>>>>>>> fdf5d109fb9089132498a473a5fc5a56011122b9
 
 """
-* TODO: fix: when a user wants to make a deposit (option 'd')
-and types in the account number, it goes to the ValueError exception
-and returns 'Conta não encontrada'.
+* TODO: fix: When a user wants to make a transaction and the system creates duplicated data,
+e.g.: a duplicated user or a duplicated account.
 """
+

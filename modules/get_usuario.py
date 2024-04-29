@@ -1,11 +1,10 @@
 import csv
 
-from usuario import Usuario
+from business.usuario import Usuario
 
-
-def get_usuario(cpf: str) -> Usuario:
-    with open("usuarios.csv", "r") as file:
-        reader = csv.reader(file)
+def get_usuario(cpf: str):
+    with open("data/usuarios.csv", "r") as f:
+        reader = csv.reader(f)
         for row in reader:
             if row[2] == cpf:
                 return Usuario(*row)
