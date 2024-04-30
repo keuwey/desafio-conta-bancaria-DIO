@@ -17,7 +17,7 @@ def get_conta(numero: int):
             # Se o campo na posição 0 for igual ao numero digitado
             if int(row[0]) == numero:
                 # Acesa o arquivo usuarios.csv em modo de leitura
-                with open("\\data\\usuarios.csv", "r") as file:
+                with open(str(caminho_data) + "\\data\\usuarios.csv", "r") as file:
                     reader = csv.reader(file)
                     # Para cada campo dentro dentro do arquivo lido retorna uma lista
                     for row in reader:

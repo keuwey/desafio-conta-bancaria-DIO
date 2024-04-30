@@ -46,7 +46,9 @@ class Conta:
         if valor > 0:
 
             with open(
-                "\\data\\conta-" + str(self.numero) + ".csv", "r", newline=""
+                str(caminho_data) + "\\data\\conta-" + str(self.numero) + ".csv",
+                "r",
+                newline="",
             ) as file:
                 reader = csv.reader(file)
                 for row in reader:
@@ -56,7 +58,9 @@ class Conta:
             # Atualiza o saldo do cliente, cria um arquivo exclusivo para cada conta
             # de cliente com numero da conta ao lado
             with open(
-                "\\data\\conta-" + str(self.numero) + ".csv", "w+", newline=""
+                str(caminho_data) + "\\data\\conta-" + str(self.numero) + ".csv",
+                "w+",
+                newline="",
             ) as file:
                 writer = csv.writer(file)
                 writer.writerow([self.numero, self.usuario.nome, self.saldo])
@@ -64,7 +68,9 @@ class Conta:
             # Adciona registro as transações cria um arquivo exclusivo para cada
             # conta de cliente com numero da conta ao lado
             with open(
-                "\\data\\transacoes" + str(self.numero) + ".csv", "a", newline=""
+                str(caminho_data) + "\\data\\transacoes" + str(self.numero) + ".csv",
+                "a",
+                newline="",
             ) as file:
                 writer = csv.writer(file)
                 writer.writerow(
@@ -96,7 +102,9 @@ class Conta:
             # Adciona registro as transações cria um arquivo exclusivo para cada
             # conta de cliente com numero da conta ao lado
             with open(
-                "\\data\\transacoes-" + str(self.numero) + ".csv", "a+", newline=""
+                str(caminho_data) + "\\data\\transacoes-" + str(self.numero) + ".csv",
+                "a+",
+                newline="",
             ) as file:
                 writer = csv.writer(file)
                 writer.writerow(
