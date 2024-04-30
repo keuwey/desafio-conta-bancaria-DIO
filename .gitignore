@@ -4,5 +4,4 @@
 .dmypy.json
 dmypy.json
 __pycache__
-*.csv
 .vscode

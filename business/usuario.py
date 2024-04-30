@@ -1,6 +1,10 @@
 import csv
 import re
 import os
+from pathlib import Path
+
+caminho_data = Path().absolute()
+caminho_data.chmod(0o000600)
 
 
 class Usuario:
@@ -17,13 +21,16 @@ class Usuario:
         self.endereco = endereco
 
         # Verifica se o arquivo existe e faz as alterações com os novos dados
-        if os.path.exists("data/usuarios.csv"):
+        # ! Não sei se a linha abaixo funciona. Fazer alguns testes depois
+        if os.path.exists(Path(caminho_data, "\\data\\usuarios.csv")):
 
-            with open("data/usuarios.csv", "r") as file:
+            with open(str(caminho_data) + "\\data\\usuarios.csv", "r") as file:
                 reader = csv.reader(file)
                 for row in reader:
                     if row[2] != self.cpf:
-                        with open("data/usuarios.csv", "a", newline="") as file:
+                        with open(
+                            str(caminho_data) + "\\data\\usuarios.csv", "a", newline=""
+                        ) as file:
                             writer = csv.writer(file)
                             writer.writerow(
                                 [
@@ -36,8 +43,8 @@ class Usuario:
 
         # Caso o arquivo não exista, cria o arquivo e faz a inclusão das informações
         else:
-            with open("data/usuarios.csv", "x") as file:
-                with open("data/usuarios.csv", "a", newline="") as file:
+            with open(str(caminho_data) + "\\data\\usuarios.csv", "r") as file:
+                with open("data\\usuarios.csv", "a", newline="") as file:
                     writer = csv.writer(file)
                     writer.writerow(
                         [self.nome, self.data_nascimento, self.cpf, self.endereco]

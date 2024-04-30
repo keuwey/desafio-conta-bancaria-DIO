@@ -1,4 +1,4 @@
-import csv
+""" import csv
 
 
 def userReader(file: str):
@@ -22,3 +22,4 @@ def userWriter(
     with open({file}, {modeWriter}, newline="") as f:
         writer = csv.writer(f)
         writer.writerow([{atribute1}, {atribute2}, {atribute3}])
+ """

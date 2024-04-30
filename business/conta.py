@@ -2,6 +2,10 @@ import csv
 import os
 
 from modules.get_usuario import get_usuario
+from pathlib import Path
+
+caminho_data = Path().absolute()
+caminho_data.chmod(0o000600)
 
 
 class Conta:
@@ -20,12 +24,19 @@ class Conta:
 
         # Verifica se o arquivo existe, caso existe não faz nada para não
         # duplicar o arquivo.
-        if os.path.exists("data/conta-" + str(self.numero) + ".csv"):
+        # ! Testar se esse Path(caminho_data...) funciona
+        if os.path.exists(
+            Path(caminho_data, "\\data\\conta-" + str(self.numero) + ".csv")
+        ):
             print("")
             # Caso o arquivo não exista faz o devido cadastro.
         else:
             # Faz o registro da nova conta criada
-            with open("data/conta-" + str(self.numero) + ".csv", "w", newline="") as f:
+            with open(
+                str(caminho_data) + "\\data\\conta-" + str(self.numero) + ".csv",
+                "x+",
+                newline="",
+            ) as f:
                 writer = csv.writer(f)
                 writer.writerow([self.numero, self.usuario.nome, self.saldo])
 
@@ -34,7 +45,7 @@ class Conta:
         if valor > 0:
 
             with open(
-                "data/conta-" + str(self.numero) + ".csv", "r", newline=""
+                "\\data\\conta-" + str(self.numero) + ".csv", "r", newline=""
             ) as file:
                 reader = csv.reader(file)
                 for row in reader:
@@ -44,7 +55,7 @@ class Conta:
             # Atualiza o saldo do cliente, cria um arquivo exclusivo para cada conta
             # de cliente com numero da conta ao lado
             with open(
-                "data/conta-" + str(self.numero) + ".csv", "w+", newline=""
+                "\\data\\conta-" + str(self.numero) + ".csv", "w+", newline=""
             ) as file:
                 writer = csv.writer(file)
                 writer.writerow([self.numero, self.usuario.nome, self.saldo])
@@ -52,7 +63,7 @@ class Conta:
             # Adciona registro as transações cria um arquivo exclusivo para cada
             # conta de cliente com numero da conta ao lado
             with open(
-                "data/transacoes" + str(self.numero) + ".csv", "a", newline=""
+                "\\data\\transacoes" + str(self.numero) + ".csv", "a", newline=""
             ) as file:
                 writer = csv.writer(file)
                 writer.writerow(
@@ -84,11 +95,15 @@ class Conta:
             # Adciona registro as transações cria um arquivo exclusivo para cada
             # conta de cliente com numero da conta ao lado
             with open(
-                "data/transacoes-" + str(self.numero) + ".csv", "a+", newline=""
+                "\\data\\transacoes-" + str(self.numero) + ".csv", "a+", newline=""
             ) as file:
                 writer = csv.writer(file)
                 writer.writerow(
-                    ["Nº Conta: " + self.numero, "Tipo: Saque", "Valor R$ : " + valor]
+                    [
+                        "Nº Conta: " + str(self.numero),
+                        "Tipo: Saque",
+                        "Valor R$ : " + str(valor),
+                    ]
                 )
 
             # Retorna mensagem ao usuário informando que a operação foi realizada
@@ -100,9 +115,9 @@ class Conta:
         return "O valor que você deseja sacar é maior que o saldo da sua conta."
 
     # Metódo para EXTRATO
-    def extrato(self) -> str:
-        extrato = ""
-        for transacao, valor in self.transacoes:
-            extrato += f"{transacao}: R$ {valor:.2f}\n"
-        extrato += f"Saldo atual: R$ {self.saldo:.2f}"
-        return extrato
+    # def extrato(self) -> str:
+    #     extrato = ""
+    #     for transacao, valor in self.transacoes:
+    #         extrato += f"{transacao}: R$ {valor:.2f}\n"
+    #     extrato += f"Saldo atual: R$ {self.saldo:.2f}"
+    #     return extrato
