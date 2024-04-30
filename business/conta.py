@@ -24,12 +24,13 @@ class Conta:
 
         # Verifica se o arquivo existe, caso existe não faz nada para não
         # duplicar o arquivo.
-        # ! Testar se esse Path(caminho_data...) funciona
+        # ! Testar se esse str(caminho_data...) funciona
         if os.path.exists(
-            Path(caminho_data, "\\data\\conta-" + str(self.numero) + ".csv")
+            str(caminho_data) + "\\data\\conta-" + str(self.numero) + ".csv"
         ):
-            print("")
-            # Caso o arquivo não exista faz o devido cadastro.
+            print()
+
+        # Caso o arquivo não exista faz o devido cadastro.
         else:
             # Faz o registro da nova conta criada
             with open(
