@@ -7,6 +7,6 @@ def ListarContas():
     try:
         usuario = get_usuario(cpf)
         for conta in usuario.contas:
-            return f"Número da conta: {conta.numero}, Saldo: R$ {conta.saldo:.2f}"
+            return f"Número da conta: {conta.numero}\nSaldo: R$ {conta.saldo:.2f}"
     except ValueError:
         return "Usuário não encontrado"

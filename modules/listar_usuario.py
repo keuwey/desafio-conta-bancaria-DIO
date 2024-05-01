@@ -1,8 +1,12 @@
 import csv
+from pathlib import Path
+
+caminho_data = Path().absolute()
+caminho_data.chmod(0o000600)
 
 
 def ListarUsuarios():
-    with open("data/usuarios.csv", "r") as f:
+    with open(str(caminho_data) + "\\data\\usuarios.csv", "r") as f:
         reader = csv.reader(f)
         for row in reader:
             nome, data_nascimento, cpf, endereco = row
