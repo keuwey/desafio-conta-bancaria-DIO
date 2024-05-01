@@ -1,15 +1,14 @@
 import csv
-from pathlib import Path
-
-caminho_data = Path().absolute()
-caminho_data.chmod(0o000600)
-
+from modules.get_dirFile import *
 
 from business.usuario import Usuario
 
+# Testando nova implemtação do sistema de arquivos
+mountDir('data')
+mountFile('usuarios')
 
 def get_usuario(cpf: str):
-    with open(str(caminho_data) + "\\data\\usuarios.csv", "r") as f:
+    with open(str(mountDir) +'\\'+str(mountFile)+'.csv', 'r') as f:
         reader = csv.reader(f)
         for row in reader:
             if row[2] == cpf:
