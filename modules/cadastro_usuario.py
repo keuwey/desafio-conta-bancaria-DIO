@@ -1,6 +1,5 @@
 from business.usuario import Usuario
 
-
 def CadastrarUsuario():
 
     nome = input("Digite o nome de usuário: ")

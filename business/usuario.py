@@ -3,7 +3,6 @@ import re
 import os
 from pathlib import Path  
 
-
 class Usuario:
     def __init__(self, nome: str, data_nascimento: str, cpf: str, endereco: str):
         if not re.match(r"\d{2}/\d{2}/\d{4}", data_nascimento):
@@ -16,6 +15,7 @@ class Usuario:
         self.data_nascimento = data_nascimento
         self.cpf = cpf
         self.endereco = endereco
+        cpf_list = [] # lista para armezar cpfs cadastrados, para posterior verificação
         
         # (Daniel Costa: Comecei a resolução ás 00:30 - 01/05/2024)
 
@@ -24,53 +24,37 @@ class Usuario:
         # Linha para evitar repetição extensa de código
         self.arquivo_usuario = Path(str(self.caminho_data) + '\\usuarios.csv')
         
+        # Verfica se é um diretório
+        if not self.caminho_data.is_dir():
+           # Cria o diretório, em caso de existência evita erros através do 'exists_ok=True'
+           self.caminho_data.mkdir(exist_ok=True)
+           # Atribui permissões ao diretório
+           self.caminho_data.chmod(0o000777)
         
-        if not self.caminho_data.exists():
-            
-            # Cria o diretório, em caso de existência evita erros através do 'exists_ok=True'
-            self.caminho_data.mkdir(exist_ok=True)
-            # Atribui permissões ao diretório 
-            self.caminho_data.chmod(0o000777)
-            
-            # Verifica se o arquivo existe, caso não exista cria e concede permissões
-            if not self.arquivo_usuario.exists():
-                # Cria o arquivo usuarios.csv
-                self.arquivo_usuario.touch()
-                # Atribui permissões ao arquivo
-                self.arquivo_usuario.chmod(0o000777)
-
-            # Caso o arquivo não exista, cria o arquivo e faz a inclusão das informações
+        # Se o arquivo existir, realiza as intruções abaixo: abre o arquivo e lê campo por campo
+        if self.arquivo_usuario.exists():
+            with open(str(self.arquivo_usuario), "r") as file:
+                reader = csv.reader(file)
+                for row in reader:
+                    # Adiciona CPF a lista de cpfs para comparação
+                    cpf_list.append(row[2])
+            # Se o CPF não estiver na lista adiciona novo Usuário        
+            if self.cpf not in cpf_list:
+                # Faz a inclusão das novas informações caso o cpf do usuário não exista na lista
                 with open(str(self.arquivo_usuario), "a", newline="") as file:
                     writer = csv.writer(file)
                     writer.writerow([self.nome, self.data_nascimento, self.cpf, self.endereco])
-
-        # Senão, caso o arquivo exista vai fazer a verificação se o arquivo existe.
+                    print("Usuário " + str(self.nome) + " criado com sucesso!")
+            else: 
+                print("Não foi possível adicionar usuário, CPF: "+ str(self.cpf) +" já cadastrado!")
+                
+        # Senão, caso o arquivo não exista realiza as instruções abaixo:        
         else:
-            
-           # Atribui permissões ao diretório 
-           # self.caminho_data.chmod(0o000777)
-           
-           # Verifica se o arquivo existe, caso não exista cria e concede permissões
-           if not self.arquivo_usuario.exists():
-                # Cria o arquivo usuarios.csv
-                self.arquivo_usuario.touch()
-                # Atribui permissões ao arquivo
-                self.arquivo_usuario.chmod(0o000777)
- 
-                with open(str(self.caminho_data) + str(self.arquivo_usuario), 'r', newline="") as f:
-                    reader = csv.reader(f)
-                    for row in reader:
-                        if row[2] != self.cpf:
-                            with open(str(self.caminho_data) + str(self.arquivo_usuario), 'a+', newline="") as f:
-                                writer = csv.writer(f)
-                                writer.writerow([self.nome,self.data_nascimento,self.cpf,self.endereco])
-
-        # # Caso o arquivo não exista, cria o arquivo e faz a inclusão das informações
-        # else:
-        #     # Cria o diretório, em caso de existência evita erros através do 'exists_ok=True'
-        #     self.caminho_data.mkdir(exist_ok=True)
-            
-        #     with open(str(self.caminho_data) + str(self.arquivo_usuario), "w") as file:
-        #         with open(str(self.caminho_data) + str(self.arquivo_usuario), "a", newline="") as file:
-        #             writer = csv.writer(file)
-        #             writer.writerow([self.nome, self.data_nascimento, self.cpf, self.endereco])
+            # Cria o arquivo usuarios.csv
+            self.arquivo_usuario.touch()
+            # Atribui permissões ao arquivo
+            self.arquivo_usuario.chmod(0o000777)
+            # Após criar o arquivo faz a inclusão das informações
+            with open(str(self.arquivo_usuario), "w", newline="") as file:
+                    writer = csv.writer(file)
+                    writer.writerow([self.nome, self.data_nascimento, self.cpf, self.endereco])
