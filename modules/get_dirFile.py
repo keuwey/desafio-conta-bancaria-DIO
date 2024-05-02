@@ -9,8 +9,14 @@ from pathlib import Path
 def mountDir(dir: str):
     # Definição do sistema de arquivos
     caminho_data = Path(str(dir)).absolute()
+    return caminho_data
     
-def mountFile(self,file: str):
-    # Linha para evitar repetição extensa de código
-    arquivo_usuario = Path(str(self.caminho_data)+'\\'+str(file)+'.csv')
-    arquivo_conta = Path(str(self.caminho_data)+'\\'+str(file)+'.csv')   
+def mountFile(file: str):
+    # Definição dos arquivos
+    if(file == 'usuarios'):
+        arquivo_usuario = Path(str(file)+'.csv')
+        return arquivo_usuario
+    if(file == 'contas'):
+        arquivo_conta = Path(str(file)+'.csv')
+        return arquivo_conta   
+    
