@@ -1,16 +1,16 @@
 import csv
-from pathlib import Path
+from modules.get_dirFile import *
+from business.usuario import Usuario
 
-caminho_data = Path().absolute()
-caminho_data.chmod(0o000600)
+# Testando nova implemtação do sistema de arquivos
+data = mountDir('data')
+usuarios = mountFile('usuarios')
 
 
 def ListarUsuarios():
-    with open(str(caminho_data) + "\\data\\usuarios.csv", "r") as f:
-        reader = csv.reader(f)
+    with open(str(data) + '\\'+str(usuarios), 'r') as file:
+        reader = csv.reader(file)
         for row in reader:
-            nome, data_nascimento, cpf, endereco = row
-            return (
-                f"Nome: {nome}, Data de Nascimento: {data_nascimento},"
-                f"CPF: {cpf}, Endereço: {endereco}"
-            )
+            nome, data_nascimento, cpf, endereco_logradouro, endereco_numero, endereco_bairro, endereco_cidade = row
+            print('Nome: '+str(nome)+', Data de Nascimento: '+str(data_nascimento)+', CPF: '+str(cpf) +
+                  ', Endereço: ' + str(endereco_logradouro) + ', ' + str(endereco_numero) + ' - ' + str(endereco_bairro) + ' - ' + str(endereco_cidade))
