@@ -22,58 +22,73 @@ class Conta:
         # (Daniel Costa: Comecei a resolução ás 00:30 - 01/05/2024)
 
         # Definição do sistema de arquivos (Reformulado por Daniel Costa)
-        self.caminho_data = Path('data').absolute()
-        # Linha para evitar repetição extensa de código (Introduzida por Daniel Costa)
-        self.arquivo_conta = Path('/conta-' + str(self.numero) + '.csv')
-        self.arquivo_trans = Path('/transacoes-' + str(self.numero) + '.csv')
+        self.caminho_data = Path("data").absolute()
+        # Linha para evitar repetição extensa de código
+        # (Introduzida por Daniel Costa)
+        self.arquivo_conta = Path("/conta-" + str(self.numero) + ".csv")
+        self.arquivo_trans = Path("/transacoes-" + str(self.numero) + ".csv")
 
         if not self.caminho_data.exists():
-            # Cria o diretório, em caso de existência evita erros através do 'exists_ok=True'
+            # Cria o diretório, em caso de existência evita erros através
+            # do 'exists_ok=True'
             self.caminho_data.mkdir(exist_ok=True)
             # Atribui permissões ao diretório
             self.caminho_data.chmod(0o000600)
             # Cria os arquivos conta e transacoes caso não existam.
             self.arquivo_conta.touch()
             self.arquivo_trans.touch()
-            print('criado com sucesso!')
+            print("criado com sucesso!")
 
             # Faz o registro da nova conta criada
-            with open(str(self.caminho_data) + str(self.arquivo_conta), 'w', newline="") as f:
+            with open(
+                str(self.caminho_data) + str(self.arquivo_conta), "w", newline=""
+            ) as f:
                 writer = csv.writer(f)
                 writer.writerow([self.numero, self.usuario.nome, self.saldo])
         else:
             # Caso exista não faz nada!
-            print('PSeudos Eggs:.. But still have not found what im looking for...')
+            print("PSeudos Eggs:.. But still have not found what im looking for...")
 
     # Metódo para DEPOSITAR
     def depositar(self, valor: float) -> str:
         if valor > 0:
 
-            with open(str(self.caminho_data) + str(self.arquivo_conta), 'r', newline="") as f:
+            with open(
+                str(self.caminho_data) + str(self.arquivo_conta), "r", newline=""
+            ) as f:
                 reader = csv.reader(f)
                 for row in reader:
                     self.saldo = float(row[2])
                     self.saldo += valor
 
-                # Atualiza o saldo do cliente, cria um arquivo exclusivo para cada conta
-                # de cliente com numero da conta ao lado
-                with open(str(self.caminho_data) + str(self.arquivo_conta), 'w+', newline="") as f:
+                # Atualiza o saldo do cliente, cria um arquivo exclusivo para cada
+                # conta de cliente com numero da conta ao lado
+                with open(
+                    str(self.caminho_data) + str(self.arquivo_conta), "w+", newline=""
+                ) as f:
                     writer = csv.writer(f)
                     writer.writerow([self.numero, self.usuario.nome, self.saldo])
 
                 # Adciona registro as transações cria um arquivo exclusivo para cada
                 # conta de cliente com numero da conta ao lado
-                with open(str(self.caminho_data) + str(self.arquivo_trans), 'w+', newline="") as f:
-                     writer = csv.writer(f)
-                     writer.writerow(["N: da Conta: " + str(self.numero),
-                                    " Tipo: Deposito ", "Valor R$: " + str(valor)])
+                with open(
+                    str(self.caminho_data) + str(self.arquivo_trans), "w+", newline=""
+                ) as f:
+                    writer = csv.writer(f)
+                    writer.writerow(
+                        [
+                            "N: da Conta: " + str(self.numero),
+                            " Tipo: Deposito ",
+                            "Valor R$: " + str(valor),
+                        ]
+                    )
 
             # Retorna mensagem ao usuário informando que a operação foi
             # realizada com sucesso
-        return (
-            f"Depósito de R$ {valor:.2f} realizado com sucesso!"
-            f"\nSaldo atual: R$ {self.saldo:.2f}"
-        )
+            return (
+                f"Depósito de R$ {valor:.2f} realizado com sucesso!"
+                f"\nSaldo atual: R$ {self.saldo:.2f}"
+            )
         return "Digite um valor positivo"
 
     # Metódo para SACAR
@@ -88,7 +103,9 @@ class Conta:
 
             # Adciona registro as transações cria um arquivo exclusivo para cada
             # conta de cliente com numero da conta ao lado
-            with open(str(self.caminho_data) + str(self.arquivo_trans), 'w+', newline="") as f:
+            with open(
+                str(self.caminho_data) + str(self.arquivo_trans), "w+", newline=""
+            ) as f:
                 writer = csv.writer(f)
                 writer.writerow(
                     [
