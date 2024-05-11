@@ -21,19 +21,19 @@ while True:
 
     match opcao:
         case "cu":
-            print(cadastrar_usuario())
+            cadastrar_usuario()
         case "cc":
             print(cadastrar_conta())
         case "lu":
             listar_usuarios()
         case "lc":
-            print(listar_contas())
+            listar_contas()
         case "d":
-            print(realizar_deposito())
+            realizar_deposito()
         case "s":
-            print(realizar_deposito())
+            realizar_deposito()
         case "e":
-            print(realizar_deposito())
+            realizar_deposito()
         case "q":
             break
         case _:
