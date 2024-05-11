@@ -4,6 +4,9 @@ from pathlib import Path
 
 
 class Usuario:
+    # lista para armazenar CPFs cadastrados para posterior verificação
+    cpf_list = []
+
     def __init__(
             self,
             nome: str,
