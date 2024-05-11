@@ -3,9 +3,7 @@ from pathlib import Path
 # (Daniel Costa: Comecei a resolução às 00:30 - 01/05/2024)
 
 """
-TODO: Atenção esse arquivo é uma nova implementação, e ainda está
-em fase de desenolvimento.
-
+Atenção esse arquivo é uma nova implementação e ainda está em fase de desenvolvimento.
 """
 
 
