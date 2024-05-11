@@ -21,7 +21,7 @@ while True:
 
     match opcao:
         case "cu":
-            cadastrar_usuario()
+            print(cadastrar_usuario())
         case "cc":
             print(cadastrar_conta())
         case "lu":

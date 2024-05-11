@@ -59,32 +59,29 @@ class Usuario:
         # - Abre o arquivo
         # - Lê campo por campo
 
-        if self.arquivo_usuario.exists():
-            with open(str(self.arquivo_usuario), "r") as file:
-                reader = csv.reader(file)
-                for row in reader:
-                    # Adiciona CPF a lista de CPFs para comparação
-                    Usuario.cpf_list.append(row[2])
-            # Se o CPF não estiver na lista adiciona novo Usuário
-            if self.cpf not in Usuario.cpf_list:
-                # Faz a inclusão das novas informações caso o CPF do usuário
-                # não exista na lista
-                with open(str(self.arquivo_usuario), "a", newline="") as file:
-                    writer = csv.writer(file)
-                    writer.writerow(
-                        [
-                            self.nome,
-                            self.data_nascimento,
-                            self.cpf,
-                            self.endereco_logradouro,
-                            self.endereco_numero,
-                            self.endereco_bairro,
-                            self.endereco_cidade,
-                            self.contas
-                        ]
-                    )
-                print("Usuário " + str(self.nome) + " criado com sucesso!")
-                Usuario.cpf_list.append(self.cpf)
+    def cpf_exist(self):
+        return self.cpf in Usuario.cpf_set
+
+    def add_user(self):
+        with open(str(self.arquivo_usuario), "r+") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                # Adiciona CPF a lista de CPFs para comparação
+                Usuario.cpf_set.add(row[2])
+            if not self.cpf_exist():
+                writer = csv.writer(file, lineterminator='\r')
+                writer.writerow(
+                    [
+                        self.nome,
+                        self.data_nascimento,
+                        self.cpf,
+                        self.endereco_logradouro,
+                        self.endereco_numero,
+                        self.endereco_bairro,
+                        self.endereco_cidade,
+                        self.contas,
+                    ]
+                )
             else:
                 print(
                     "Não foi possível adicionar usuário, CPF: "

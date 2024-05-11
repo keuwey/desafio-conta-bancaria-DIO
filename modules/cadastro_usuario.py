@@ -19,8 +19,12 @@ def cadastrar_usuario():
             endereco_numero,
             endereco_bairro,
             endereco_cidade,
-            []
+            "[]"
         )
-        return f"Usuário {nome} criado com sucesso!"
+        if not usuario.cpf_exist():
+            usuario.add_user()
+            return f"Usuário {nome} criado com sucesso!"
+        else:
+            return f"Usuário {nome} com CPF {cpf} já existente!"
     except ValueError as e:
         return e
