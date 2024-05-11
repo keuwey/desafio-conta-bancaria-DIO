@@ -9,6 +9,7 @@ usuarios = mount_file("usuarios")
 def listar_usuarios():
     with open(str(data) + "\\" + str(usuarios), "r") as file:
         reader = csv.reader(file)
+        lines = 0
         for row in reader:
             (
                 nome,
@@ -35,3 +36,6 @@ def listar_usuarios():
                 + " - "
                 + str(endereco_cidade)
             )
+            lines += 1
+        if not lines:
+            print("Sem usuários cadastrados")
