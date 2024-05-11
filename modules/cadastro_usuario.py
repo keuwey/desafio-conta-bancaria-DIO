@@ -20,6 +20,7 @@ def cadastrar_usuario():
             endereco_numero,
             endereco_bairro,
             endereco_cidade,
+            []
         )
         return f"Usuário {nome} criado com sucesso!"
     except ValueError as e:

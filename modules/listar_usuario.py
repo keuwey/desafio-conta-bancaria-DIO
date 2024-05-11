@@ -19,6 +19,7 @@ def listar_usuarios():
                 endereco_numero,
                 endereco_bairro,
                 endereco_cidade,
+                contas,
             ) = row
             print(
                 "Nome: "
@@ -35,6 +36,8 @@ def listar_usuarios():
                 + str(endereco_bairro)
                 + " - "
                 + str(endereco_cidade)
+                + ", contas: "
+                + contas or []
             )
             lines += 1
         if not lines:
