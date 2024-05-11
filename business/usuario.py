@@ -16,6 +16,7 @@ class Usuario:
             endereco_numero: str,
             endereco_bairro: str,
             endereco_cidade: str,
+            lista_contas,
     ):
         if not re.match(r"\d{2}/\d{2}/\d{4}", data_nascimento):
             raise ValueError("Data de nascimento inválida")
@@ -37,9 +38,7 @@ class Usuario:
         self.endereco_numero = endereco_numero
         self.endereco_bairro = endereco_bairro
         self.endereco_cidade = endereco_cidade
-        self.contas = []
-        # lista para armazenar CPFs cadastrados para posterior verificação
-        cpf_list = []
+        self.contas = [] or lista_contas
 
         # (Daniel Costa: Comecei a resolução ás 00:30 - 01/05/2024)
 
@@ -65,9 +64,9 @@ class Usuario:
                 reader = csv.reader(file)
                 for row in reader:
                     # Adiciona CPF a lista de CPFs para comparação
-                    cpf_list.append(row[2])
+                    Usuario.cpf_list.append(row[2])
             # Se o CPF não estiver na lista adiciona novo Usuário
-            if self.cpf not in cpf_list:
+            if self.cpf not in Usuario.cpf_list:
                 # Faz a inclusão das novas informações caso o CPF do usuário
                 # não exista na lista
                 with open(str(self.arquivo_usuario), "a", newline="") as file:
@@ -81,9 +80,11 @@ class Usuario:
                             self.endereco_numero,
                             self.endereco_bairro,
                             self.endereco_cidade,
+                            self.contas
                         ]
                     )
-                    print("Usuário " + str(self.nome) + " criado com sucesso!")
+                print("Usuário " + str(self.nome) + " criado com sucesso!")
+                Usuario.cpf_list.append(self.cpf)
             else:
                 print(
                     "Não foi possível adicionar usuário, CPF: "
