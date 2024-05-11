@@ -48,6 +48,10 @@ class Usuario:
         # Linha para evitar repetição extensa de código
         self.arquivo_usuario = Path(str(self.caminho_data) + "\\usuarios.csv")
 
+        self.set_dir()
+        self.set_file()
+
+    def set_dir(self):
         # Verifica se é um diretório
         if not self.caminho_data.is_dir():
             # Cria o diretório, em caso de existência evita erros através
@@ -56,9 +60,12 @@ class Usuario:
             # Atribui permissões ao diretório
             self.caminho_data.chmod(0o000777)
 
-        # Se o arquivo existir, realiza as instruções abaixo:
-        # - Abre o arquivo
-        # - Lê campo por campo
+    def set_file(self):
+        if not self.arquivo_usuario.exists():
+            # Cria o arquivo usuarios.csv
+            self.arquivo_usuario.touch()
+            # Atribui permissões ao arquivo
+            self.arquivo_usuario.chmod(0o000777)
 
     def cpf_exist(self):
         return self.cpf in Usuario.cpf_set
@@ -88,25 +95,4 @@ class Usuario:
                     "Não foi possível adicionar usuário, CPF: "
                     + str(self.cpf)
                     + " já cadastrado!"
-                )
-
-        # Senão, caso o arquivo não exista realiza as instruções abaixo:
-        else:
-            # Cria o arquivo usuarios.csv
-            self.arquivo_usuario.touch()
-            # Atribui permissões ao arquivo
-            self.arquivo_usuario.chmod(0o000777)
-            # Após criar o arquivo faz a inclusão das informações
-            with open(str(self.arquivo_usuario), "w", newline="") as file:
-                writer = csv.writer(file)
-                writer.writerow(
-                    [
-                        self.nome,
-                        self.data_nascimento,
-                        self.cpf,
-                        endereco_logradouro,
-                        endereco_numero,
-                        endereco_bairro,
-                        endereco_cidade,
-                    ]
                 )
