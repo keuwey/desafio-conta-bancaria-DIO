@@ -1,5 +1,6 @@
 import csv
 from pathlib import Path
+from business.conta import Conta
 
 caminho_data = Path().absolute()
 caminho_data.chmod(0o000600)
