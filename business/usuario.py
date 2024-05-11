@@ -34,7 +34,8 @@ class Usuario:
         self.endereco_numero = endereco_numero
         self.endereco_bairro = endereco_bairro
         self.endereco_cidade = endereco_cidade
-        # lista para armezar cpfs cadastrados para posterior verificação
+        self.contas = []
+        # lista para armazenar CPFs cadastrados para posterior verificação
         cpf_list = []
 
         # (Daniel Costa: Comecei a resolução ás 00:30 - 01/05/2024)
@@ -44,7 +45,7 @@ class Usuario:
         # Linha para evitar repetição extensa de código
         self.arquivo_usuario = Path(str(self.caminho_data) + "\\usuarios.csv")
 
-        # Verfica se é um diretório
+        # Verifica se é um diretório
         if not self.caminho_data.is_dir():
             # Cria o diretório, em caso de existência evita erros através
             # do 'exists_ok=True'
@@ -52,17 +53,19 @@ class Usuario:
             # Atribui permissões ao diretório
             self.caminho_data.chmod(0o000777)
 
-        # Se o arquivo existir, realiza as intruções abaixo: abre o arquivo e
-        # lê campo por campo
+        # Se o arquivo existir, realiza as instruções abaixo:
+        # - Abre o arquivo
+        # - Lê campo por campo
+
         if self.arquivo_usuario.exists():
             with open(str(self.arquivo_usuario), "r") as file:
                 reader = csv.reader(file)
                 for row in reader:
-                    # Adiciona CPF a lista de cpfs para comparação
+                    # Adiciona CPF a lista de CPFs para comparação
                     cpf_list.append(row[2])
             # Se o CPF não estiver na lista adiciona novo Usuário
             if self.cpf not in cpf_list:
-                # Faz a inclusão das novas informações caso o cpf do usuário
+                # Faz a inclusão das novas informações caso o CPF do usuário
                 # não exista na lista
                 with open(str(self.arquivo_usuario), "a", newline="") as file:
                     writer = csv.writer(file)

@@ -62,7 +62,7 @@ class Conta:
                     self.saldo += valor
 
                 # Atualiza o saldo do cliente, cria um arquivo exclusivo para cada
-                # conta de cliente com numero da conta ao lado
+                # conta de cliente com número da conta ao lado
                 with open(
                     str(self.caminho_data) + str(self.arquivo_conta), "w+", newline=""
                 ) as f:
@@ -71,6 +71,8 @@ class Conta:
 
                 # Adciona registro as transações cria um arquivo exclusivo para cada
                 # conta de cliente com numero da conta ao lado
+                # Adiciona registro as transações cria um arquivo exclusivo para cada
+                # conta de cliente com número da conta ao lado
                 with open(
                     str(self.caminho_data) + str(self.arquivo_trans), "w+", newline=""
                 ) as f:
@@ -101,8 +103,8 @@ class Conta:
             self.saldo -= valor
             self.saques_diarios += 1
 
-            # Adciona registro as transações cria um arquivo exclusivo para cada
-            # conta de cliente com numero da conta ao lado
+            # Adiciona registro as transações cria um arquivo exclusivo para cada
+            # conta de cliente com número da conta ao lado
             with open(
                 str(self.caminho_data) + str(self.arquivo_trans), "w+", newline=""
             ) as f:
