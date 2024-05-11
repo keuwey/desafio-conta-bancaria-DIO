@@ -40,7 +40,7 @@ class Usuario:
         self.endereco_cidade = endereco_cidade
         self.contas = [] or lista_contas
 
-        # (Daniel Costa: Comecei a resolução ás 00:30 - 01/05/2024)
+        # (Daniel Costa: Comecei a resolução às 00:30 - 01/05/2024)
 
         # Definição do sistema de arquivos (Reformulado por Daniel Costa)
         self.caminho_data = Path("data").absolute()

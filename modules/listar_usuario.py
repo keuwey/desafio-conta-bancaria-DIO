@@ -1,7 +1,7 @@
 import csv
 from modules.get_dirFile import *
 
-# Testando nova implemtação do sistema de arquivos
+# Testando nova implementação do sistema de arquivos
 data = mount_dir("data")
 usuarios = mount_file("usuarios")
 

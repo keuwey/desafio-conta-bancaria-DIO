@@ -2,7 +2,6 @@ from business.usuario import Usuario
 
 
 def cadastrar_usuario():
-
     nome = input("Digite o nome de usuário: ").title()
     data_nascimento = input("Digite a data de nascimento (dd/mm/aaaa): ")
     cpf = input("Digite o CPF (somente números): ")
