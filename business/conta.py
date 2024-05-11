@@ -18,7 +18,7 @@ class Conta:
         self.saldo = 0.0
         self.saques_diarios = 0
 
-        # (Daniel Costa: Comecei a resolução ás 00:30 - 01/05/2024)
+        # (Daniel Costa: Comecei a resolução às 00:30 - 01/05/2024)
 
         # Definição do sistema de arquivos (Reformulado por Daniel Costa)
         self.caminho_data = Path("data").absolute()
@@ -33,7 +33,7 @@ class Conta:
             self.caminho_data.mkdir(exist_ok=True)
             # Atribui permissões ao diretório
             self.caminho_data.chmod(0o000600)
-            # Cria os arquivos conta e transacoes caso não existam.
+            # Cria os arquivos conta e transações caso não existam.
             self.arquivo_conta.touch()
             self.arquivo_trans.touch()
             print("criado com sucesso!")
@@ -48,7 +48,7 @@ class Conta:
             # Caso exista não faz nada!
             print("PSeudos Eggs:.. But still have not found what im looking for...")
 
-    # Metódo para DEPOSITAR
+    # Método para DEPOSITAR
     def depositar(self, valor: float) -> str:
         if valor > 0:
 
@@ -90,7 +90,7 @@ class Conta:
             )
         return "Digite um valor positivo"
 
-    # Metódo para SACAR
+    # Método para SACAR
     def sacar(self, valor: float) -> str:
         if self.saques_diarios >= 3:
             return "Você já atingiu o limite diário de saques."
@@ -122,7 +122,7 @@ class Conta:
             )
         return "O valor que você deseja sacar é maior que o saldo da sua conta."
 
-    # Metódo para EXTRATO
+    # Método para EXTRATO
     # def extrato(self) -> str:
     #     extrato = ""
     #     for transacao, valor in self.transacoes:
