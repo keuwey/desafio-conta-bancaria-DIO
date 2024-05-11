@@ -2,11 +2,11 @@ import csv
 from modules.get_dirFile import *
 
 # Testando nova implemtação do sistema de arquivos
-data = mountDir("data")
-usuarios = mountFile("usuarios")
+data = mount_dir("data")
+usuarios = mount_file("usuarios")
 
 
-def ListarUsuarios():
+def listar_usuarios():
     with open(str(data) + "\\" + str(usuarios), "r") as file:
         reader = csv.reader(file)
         for row in reader:

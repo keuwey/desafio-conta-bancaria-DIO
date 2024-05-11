@@ -3,8 +3,8 @@ from modules.get_dirFile import *
 from business.usuario import Usuario
 
 # Testando nova implementação do sistema de arquivos
-data = mountDir("data")
-usuarios = mountFile("usuarios")
+data = mount_dir("data")
+usuarios = mount_file("usuarios")
 
 
 def get_usuario(cpf: str):

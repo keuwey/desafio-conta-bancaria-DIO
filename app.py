@@ -1,8 +1,8 @@
-from modules.cadastro_usuario import CadastrarUsuario
-from modules.cadastro_conta import CadastrarConta
-from modules.listar_usuario import ListarUsuarios
-from modules.listar_conta import ListarContas
-from business.deposito import realizarDeposito
+from modules.cadastro_usuario import cadastrar_usuario
+from modules.cadastro_conta import cadastrar_conta
+from modules.listar_usuario import listar_usuarios
+from modules.listar_conta import listar_contas
+from business.deposito import realizar_deposito
 
 menu = """
 [cu] Cadastrar Usuário
@@ -21,19 +21,19 @@ while True:
 
     match opcao:
         case "cu":
-            print(CadastrarUsuario())
+            print(cadastrar_usuario())
         case "cc":
-            print(CadastrarConta())
+            print(cadastrar_conta())
         case "lu":
-            print(ListarUsuarios())
+            listar_usuarios()
         case "lc":
-            print(ListarContas())
+            print(listar_contas())
         case "d":
-            print(realizarDeposito())
+            print(realizar_deposito())
         case "s":
-            print(realizarDeposito())
+            print(realizar_deposito())
         case "e":
-            print(realizarDeposito())
+            print(realizar_deposito())
         case "q":
             break
         case _:

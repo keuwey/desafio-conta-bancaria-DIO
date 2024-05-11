@@ -10,13 +10,13 @@ em fase de desenolvimento.
 
 
 # Monta sistema de arquivos da aplicação
-def mountDir(dir: str):
+def mount_dir(dir: str):
     # Definição do sistema de arquivos
     caminho_data = Path(str(dir)).absolute()
     return caminho_data
 
 
-def mountFile(file: str):
+def mount_file(file: str):
     # Definição dos arquivos
     if file == "usuarios":
         arquivo_usuario = Path(str(file) + ".csv")

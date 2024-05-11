@@ -5,9 +5,6 @@ caminho_data = Path().absolute()
 caminho_data.chmod(0o000600)
 
 
-from business.conta import Conta
-
-
 def get_conta(numero: int):
     # Acessa o arquivo conta - <numero-da-conta>.csv em modo de leitura "r"
     with open(str(caminho_data) + "\\data\\conta-" + str(numero) + ".csv", "r") as file:
