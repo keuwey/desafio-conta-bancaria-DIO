@@ -1,6 +1,7 @@
 import csv
 import re
 from pathlib import Path
+import json
 
 
 class Usuario:
@@ -16,7 +17,7 @@ class Usuario:
             endereco_numero: str,
             endereco_bairro: str,
             endereco_cidade: str,
-            lista_contas,
+            lista_contas: [],
     ):
         if not re.match(r"\d{2}/\d{2}/\d{4}", data_nascimento):
             raise ValueError("Data de nascimento inválida")
@@ -38,7 +39,7 @@ class Usuario:
         self.endereco_numero = endereco_numero
         self.endereco_bairro = endereco_bairro
         self.endereco_cidade = endereco_cidade
-        self.contas = [] or lista_contas
+        self.contas = [] or json.loads(lista_contas)
 
         # (Daniel Costa: Comecei a resolução às 00:30 - 01/05/2024)
 
