@@ -6,7 +6,6 @@ from pathlib import Path
 
 
 class Conta:
-
     contadorConta = 0  # Contador para incrementar os números das contas
 
     # Construtor da classe Conta
@@ -41,7 +40,7 @@ class Conta:
 
             # Faz o registro da nova conta criada
             with open(
-                str(self.caminho_data) + str(self.arquivo_conta), "w", newline=""
+                    str(self.caminho_data) + str(self.arquivo_conta), "w", newline=""
             ) as f:
                 writer = csv.writer(f)
                 writer.writerow([self.numero, self.usuario.nome, self.saldo])
@@ -54,7 +53,7 @@ class Conta:
         if valor > 0:
 
             with open(
-                str(self.caminho_data) + str(self.arquivo_conta), "r", newline=""
+                    str(self.caminho_data) + str(self.arquivo_conta), "r", newline=""
             ) as f:
                 reader = csv.reader(f)
                 for row in reader:
@@ -64,17 +63,15 @@ class Conta:
                 # Atualiza o saldo do cliente, cria um arquivo exclusivo para cada
                 # conta de cliente com número da conta ao lado
                 with open(
-                    str(self.caminho_data) + str(self.arquivo_conta), "w+", newline=""
+                        str(self.caminho_data) + str(self.arquivo_conta), "w+", newline=""
                 ) as f:
                     writer = csv.writer(f)
                     writer.writerow([self.numero, self.usuario.nome, self.saldo])
 
-                # Adciona registro as transações cria um arquivo exclusivo para cada
-                # conta de cliente com numero da conta ao lado
                 # Adiciona registro as transações cria um arquivo exclusivo para cada
                 # conta de cliente com número da conta ao lado
                 with open(
-                    str(self.caminho_data) + str(self.arquivo_trans), "w+", newline=""
+                        str(self.caminho_data) + str(self.arquivo_trans), "w+", newline=""
                 ) as f:
                     writer = csv.writer(f)
                     writer.writerow(
@@ -106,7 +103,7 @@ class Conta:
             # Adiciona registro as transações cria um arquivo exclusivo para cada
             # conta de cliente com número da conta ao lado
             with open(
-                str(self.caminho_data) + str(self.arquivo_trans), "w+", newline=""
+                    str(self.caminho_data) + str(self.arquivo_trans), "w+", newline=""
             ) as f:
                 writer = csv.writer(f)
                 writer.writerow(

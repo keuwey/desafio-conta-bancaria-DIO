@@ -5,14 +5,14 @@ from pathlib import Path
 
 class Usuario:
     def __init__(
-        self,
-        nome: str,
-        data_nascimento: str,
-        cpf: str,
-        endereco_logradouro: str,
-        endereco_numero: str,
-        endereco_bairro: str,
-        endereco_cidade: str,
+            self,
+            nome: str,
+            data_nascimento: str,
+            cpf: str,
+            endereco_logradouro: str,
+            endereco_numero: str,
+            endereco_bairro: str,
+            endereco_cidade: str,
     ):
         if not re.match(r"\d{2}/\d{2}/\d{4}", data_nascimento):
             raise ValueError("Data de nascimento inválida")
