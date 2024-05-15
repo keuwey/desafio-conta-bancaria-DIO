@@ -1,7 +1,7 @@
 from modules.get_usuario import get_usuario
 
 
-def ListarContas():
+def listar_contas():
 
     cpf = input("Digite o CPF do usuário (somente números): ")
     try:

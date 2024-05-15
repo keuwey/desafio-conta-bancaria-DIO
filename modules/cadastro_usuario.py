@@ -1,8 +1,7 @@
 from business.usuario import Usuario
 
 
-def CadastrarUsuario():
-
+def cadastrar_usuario():
     nome = input("Digite o nome de usuário: ").title()
     data_nascimento = input("Digite a data de nascimento (dd/mm/aaaa): ")
     cpf = input("Digite o CPF (somente números): ")
@@ -20,7 +19,12 @@ def CadastrarUsuario():
             endereco_numero,
             endereco_bairro,
             endereco_cidade,
+            "[]"
         )
-        return f"Usuário {nome} criado com sucesso!"
+        if not usuario.cpf_exist():
+            usuario.add_user()
+            return f"Usuário {nome} criado com sucesso!"
+        else:
+            return f"Usuário {nome} com CPF {cpf} já existente!"
     except ValueError as e:
         return e

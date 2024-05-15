@@ -1,14 +1,15 @@
 import csv
 from modules.get_dirFile import *
 
-# Testando nova implemtação do sistema de arquivos
-data = mountDir("data")
-usuarios = mountFile("usuarios")
+# Testando nova implementação do sistema de arquivos
+data = mount_dir("data")
+usuarios = mount_file("usuarios")
 
 
-def ListarUsuarios():
+def listar_usuarios():
     with open(str(data) + "\\" + str(usuarios), "r") as file:
         reader = csv.reader(file)
+        lines = 0
         for row in reader:
             (
                 nome,
@@ -18,6 +19,7 @@ def ListarUsuarios():
                 endereco_numero,
                 endereco_bairro,
                 endereco_cidade,
+                contas,
             ) = row
             print(
                 "Nome: "
@@ -34,4 +36,9 @@ def ListarUsuarios():
                 + str(endereco_bairro)
                 + " - "
                 + str(endereco_cidade)
+                + ", contas: "
+                + contas or []
             )
+            lines += 1
+        if not lines:
+            print("Sem usuários cadastrados")

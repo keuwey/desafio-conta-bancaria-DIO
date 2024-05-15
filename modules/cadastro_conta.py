@@ -2,7 +2,7 @@ from business.conta import Conta
 from modules.get_usuario import get_usuario
 
 
-def CadastrarConta():
+def cadastrar_conta():
     cpf = input("Digite o CPF do usuário (somente números): ")
     try:
         Conta(cpf)
